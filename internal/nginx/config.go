@@ -312,7 +312,7 @@ func ParseConfigMap(cfgm *api_v1.ConfigMap, nginxPlus bool) *Config {
 			cfg.ServerSnippets = serverSnippets
 		}
 	}
-	if _, exists, err := GetMapKeyAsInt64(cfgm.Data, "worker-processes", cfgm); exists {
+	if _, exists, err := GetMapKeyAsInt(cfgm.Data, "worker-processes", cfgm); exists {
 		if err != nil && cfgm.Data["worker-processes"] != "auto" {
 			glog.Errorf("Configmap %s/%s: Invalid value for worker-processes key: must be an integer or the string 'auto', got %q", cfgm.GetNamespace(), cfgm.GetName(), cfgm.Data["worker-processes"])
 		} else {
